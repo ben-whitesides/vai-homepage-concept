@@ -1,0 +1,2600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VAI — Train Smarter. Grow Stronger. Unlock Opportunity.</title>
+<meta name="description" content="AI-powered ecosystem for athletes, families, coaches, trainers, and communities. Intelligent guidance from AVANTI. Built-in Share & Earn income.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   VAI BRAND DESIGN SYSTEM — HOMEPAGE
+   Orange:  #F7941E  (rgb 247,148,30)
+   Green:   #34D399  (rgb 52,211,153) — VAI+
+   BG:      #0C0A09
+   Font:    Geist / Geist Mono
+============================================ */
+:root {
+  --orange:      #F7941E;
+  --orange-dim:  rgba(247,148,30,0.35);
+  --orange-glow: rgba(247,148,30,0.12);
+  --orange-hi:   #FFB347;
+  --green:       #34D399;
+  --green-dim:   rgba(52,211,153,0.25);
+  --green-glow:  rgba(52,211,153,0.08);
+  --bg:          #0C0A09;
+  --bg2:         #151210;
+  --surface:     rgba(255,255,255,0.04);
+  --surface2:    rgba(255,255,255,0.06);
+  --surface3:    rgba(255,255,255,0.08);
+  --border:      rgba(255,255,255,0.07);
+  --border-o:    rgba(247,148,30,0.3);
+  --border-g:    rgba(52,211,153,0.3);
+  --text:        #FAFAF9;
+  --text-2:      #A8A29E;
+  --text-3:      #57534E;
+  --radius:      12px;
+  --radius-lg:   20px;
+  --ease:        cubic-bezier(0.4,0,0.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+
+body {
+  font-family: 'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+/* Atmospheric BG */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(247,148,30,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 60% at 0% 100%, rgba(52,211,153,0.03) 0%, transparent 50%);
+  pointer-events: none; z-index: 0;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse-dot {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Scroll-triggered reveal — visible by default, JS enhances */
+.reveal {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.reveal.hidden-for-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ── UTILITIES ── */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--text-3);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.section-label--orange { color: var(--orange); }
+.section-label--green { color: var(--green); }
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: var(--orange);
+  color: #0C0A09;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 100px;
+  transition: all 250ms var(--ease);
+  box-shadow: 0 0 0 0 rgba(247,148,30,0), 0 4px 20px rgba(247,148,30,0.25);
+  letter-spacing: 0.01em;
+}
+.btn-primary:hover {
+  background: var(--orange-hi);
+  transform: translateY(-1px);
+  box-shadow: 0 0 30px rgba(247,148,30,0.2), 0 6px 24px rgba(247,148,30,0.3);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: transparent;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  transition: all 250ms var(--ease);
+}
+.btn-secondary:hover {
+  border-color: var(--border-o);
+  background: rgba(247,148,30,0.05);
+}
+
+.btn-green {
+  background: var(--green);
+  color: #0C0A09;
+  box-shadow: 0 4px 20px rgba(52,211,153,0.25);
+}
+.btn-green:hover {
+  background: #5EEAD4;
+  box-shadow: 0 0 30px rgba(52,211,153,0.2), 0 6px 24px rgba(52,211,153,0.3);
+}
+
+.text-link {
+  color: var(--text-2);
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 200ms var(--ease);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.text-link:hover { color: var(--orange); }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(247,148,30,0.1);
+  border: 1px solid rgba(247,148,30,0.2);
+  border-radius: 100px;
+  padding: 5px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--orange);
+  text-transform: uppercase;
+}
+
+.badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  animation: pulse-dot 2s ease infinite;
+}
+
+.glass-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  transition: border-color 220ms var(--ease), transform 200ms var(--ease), background 220ms var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.glass-card:hover {
+  border-color: var(--border-o);
+  transform: translateY(-2px);
+  background: var(--surface2);
+}
+
+.glass-card--accent::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--orange), transparent);
+}
+
+.glass-card--green:hover { border-color: var(--border-g); }
+.glass-card--green::before {
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+}
+
+.mono { font-family: 'Geist Mono', monospace; }
+
+/* ══════════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════════ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(12,10,9,0.8);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid var(--border);
+  transition: background 300ms var(--ease);
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  flex-shrink: 0;
+}
+
+.nav-logo svg { width: 32px; height: 32px; }
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-menu a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  transition: color 200ms var(--ease);
+  white-space: nowrap;
+}
+.nav-menu a:hover { color: var(--text); }
+
+.nav-cta {
+  padding: 9px 22px;
+  background: var(--orange);
+  color: #0C0A09;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 100px;
+  transition: all 250ms var(--ease);
+  flex-shrink: 0;
+}
+.nav-cta:hover {
+  background: var(--orange-hi);
+  transform: translateY(-1px);
+}
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  cursor: pointer;
+}
+.nav-hamburger span {
+  width: 22px; height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 200ms var(--ease);
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 64px; left: 0; right: 0; bottom: 0;
+  background: rgba(12,10,9,0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 999;
+  padding: 32px 24px;
+  flex-direction: column;
+  gap: 8px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-2);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  transition: color 200ms var(--ease);
+}
+.mobile-menu a:hover { color: var(--text); }
+.mobile-menu .nav-cta {
+  margin-top: 16px;
+  text-align: center;
+  padding: 14px 24px;
+  font-size: 16px;
+}
+
+@media (max-width: 900px) {
+  .nav-menu { display: none; }
+  .nav-cta-desktop { display: none; }
+  .nav-hamburger { display: flex; }
+}
+
+/* ══════════════════════════════════════════
+   SECTION 1 — HERO
+══════════════════════════════════════════ */
+.hero {
+  padding: 130px 0 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(247,148,30,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero-content { animation: slideUp 0.7s var(--ease) both; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(247,148,30,0.1);
+  border: 1px solid rgba(247,148,30,0.2);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--orange);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero-title {
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+
+.hero-title .highlight-orange { color: var(--orange); }
+.hero-title .highlight-green { color: var(--green); }
+
+.hero-sub {
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 36px;
+}
+
+.hero-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.pillar {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 200ms var(--ease);
+}
+.pillar:hover { border-color: var(--border-o); }
+
+.pillar-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: rgba(247,148,30,0.1);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.pillar-icon svg {
+  width: 18px; height: 18px;
+  stroke: var(--orange);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.pillar:nth-child(4) .pillar-icon { background: rgba(52,211,153,0.1); }
+.pillar:nth-child(4) .pillar-icon svg { stroke: var(--green); }
+
+.pillar-name {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.pillar-desc {
+  font-size: 12px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.hero-ctas {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Phone Mockup */
+.hero-visual {
+  animation: slideLeft 0.8s var(--ease) 0.2s both;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.phone-mockup {
+  width: 280px;
+  height: 560px;
+  background: #1A1714;
+  border-radius: 36px;
+  border: 2px solid rgba(255,255,255,0.1);
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.05),
+    0 30px 80px rgba(0,0,0,0.5),
+    0 0 100px rgba(247,148,30,0.06);
+  animation: float 6s ease-in-out infinite;
+}
+
+.phone-notch {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 120px; height: 28px;
+  background: #0C0A09;
+  border-radius: 0 0 18px 18px;
+  z-index: 10;
+}
+
+.phone-screen {
+  padding: 40px 18px 18px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.phone-header {
+  text-align: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.phone-header-logo {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--orange);
+  letter-spacing: -0.02em;
+}
+.phone-header-sub {
+  font-size: 10px;
+  color: var(--text-3);
+  margin-top: 2px;
+}
+
+.phone-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+}
+.phone-card-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-3);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.phone-card-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.phone-card-value {
+  font-family: 'Geist Mono', monospace;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--orange);
+}
+.phone-card-value--green { color: var(--green); }
+.phone-card-desc {
+  font-size: 11px;
+  color: var(--text-2);
+  line-height: 1.4;
+}
+
+.phone-avanti {
+  background: rgba(247,148,30,0.08);
+  border: 1px solid rgba(247,148,30,0.15);
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.phone-avanti-icon {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--orange);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.phone-avanti-icon svg { width: 14px; height: 14px; stroke: #0C0A09; fill: none; stroke-width: 2.5; }
+.phone-avanti-text {
+  font-size: 11px;
+  color: var(--text-2);
+  line-height: 1.4;
+}
+.phone-avanti-text strong { color: var(--orange); font-weight: 600; }
+
+.phone-bar {
+  display: flex;
+  gap: 6px;
+  margin-top: auto;
+}
+.phone-bar-item {
+  flex: 1;
+  height: 32px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.phone-bar-item svg { width: 14px; height: 14px; stroke: var(--text-3); fill: none; stroke-width: 2; stroke-linecap: round; }
+.phone-bar-item.active svg { stroke: var(--orange); }
+
+@media (max-width: 900px) {
+  .hero { padding: 110px 0 60px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero-visual { order: -1; }
+  .phone-mockup { width: 240px; height: 480px; }
+  .hero-pillars { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════
+   SECTION 2 — INTRODUCING VAI
+══════════════════════════════════════════ */
+.intro-section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.intro-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(247,148,30,0.04) 30%,
+    rgba(247,148,30,0.06) 50%,
+    rgba(247,148,30,0.04) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.intro-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.intro-headline {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+
+.intro-body {
+  font-size: 17px;
+  color: var(--text-2);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.intro-body strong { color: var(--text); font-weight: 600; }
+
+.intro-accent {
+  display: inline-block;
+  background: linear-gradient(90deg, var(--orange), var(--orange-hi));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* ══════════════════════════════════════════
+   SECTION 3 — THE COST OF PLAYING (LIGHT)
+══════════════════════════════════════════ */
+.cost-section {
+  padding: 100px 0;
+  position: relative;
+  background: #FAF9F7;
+  color: #1C1917;
+}
+
+.cost-section .section-label { color: #92400E; }
+
+.cost-headline {
+  font-size: clamp(30px, 4.5vw, 48px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+  color: #0C0A09;
+}
+
+.cost-headline .stat-highlight {
+  color: var(--orange);
+}
+
+.cost-sub {
+  font-size: 20px;
+  font-weight: 500;
+  color: #57534E;
+  margin-bottom: 32px;
+}
+
+.cost-body {
+  font-size: 17px;
+  color: #44403C;
+  line-height: 1.8;
+  max-width: 760px;
+  margin-bottom: 32px;
+}
+
+.cost-body strong { color: #0C0A09; }
+
+.cost-reversal {
+  background: #0C0A09;
+  color: var(--text);
+  border-radius: var(--radius-lg);
+  padding: 36px 40px;
+  margin: 40px 0;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.cost-reversal::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--green));
+}
+.cost-reversal p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--text-2);
+}
+.cost-reversal strong {
+  color: var(--text);
+  font-weight: 700;
+}
+.cost-reversal .reversal-accent {
+  color: var(--green);
+  font-weight: 700;
+}
+
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 28px 20px;
+  background: #FFFFFF;
+  border: 1px solid #E7E5E4;
+  border-radius: var(--radius);
+  transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
+}
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+.stat-number {
+  font-family: 'Geist Mono', monospace;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  color: var(--orange);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #78716C;
+  line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  .stats-bar { grid-template-columns: 1fr; }
+  .cost-reversal { padding: 28px 24px; }
+}
+
+/* ══════════════════════════════════════════
+   SECTION 4 — MEET AVANTI
+══════════════════════════════════════════ */
+.avanti-section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.avanti-section::before {
+  content: '';
+  position: absolute;
+  bottom: -100px; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(247,148,30,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.avanti-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 60px;
+}
+
+.avanti-headline {
+  font-size: clamp(30px, 4.5vw, 48px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+
+.avanti-sub {
+  font-size: 17px;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.avanti-equalizer {
+  background: rgba(52,211,153,0.06);
+  border: 1px solid rgba(52,211,153,0.15);
+  border-radius: var(--radius);
+  padding: 20px 28px;
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.7;
+  text-align: left;
+  max-width: 650px;
+  margin: 0 auto;
+}
+.avanti-equalizer strong { color: var(--green); font-weight: 600; }
+
+.avanti-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 48px;
+}
+
+.avanti-feature {
+  text-align: center;
+  padding: 36px 24px;
+}
+.avanti-feature .glass-card { padding: 36px 24px; text-align: center; height: 100%; }
+
+.avanti-icon {
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  background: rgba(247,148,30,0.1);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 18px;
+}
+.avanti-icon svg {
+  width: 26px; height: 26px;
+  stroke: var(--orange);
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.avanti-feature-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.avanti-feature-desc {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.65;
+}
+
+.avanti-cta {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .avanti-features { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════
+   SECTION 5 — SHARE & EARN
+══════════════════════════════════════════ */
+.earn-section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.earn-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(52,211,153,0.03) 40%,
+    rgba(52,211,153,0.05) 60%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.earn-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 48px;
+}
+
+.earn-headline {
+  font-size: clamp(30px, 4.5vw, 48px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+.earn-headline .highlight-green { color: var(--green); }
+
+.earn-body {
+  font-size: 17px;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.earn-how {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+
+.earn-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-2);
+}
+.earn-step-num {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: rgba(52,211,153,0.15);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.earn-step-arrow {
+  color: var(--text-3);
+  font-size: 18px;
+}
+
+.earn-examples {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 48px;
+}
+
+.earn-example {
+  position: relative;
+  overflow: hidden;
+}
+.earn-example::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+}
+
+.earn-example-role {
+  display: inline-flex;
+  padding: 4px 10px;
+  background: rgba(52,211,153,0.1);
+  border: 1px solid rgba(52,211,153,0.2);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+}
+
+.earn-example-text {
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.7;
+}
+.earn-example-text strong { color: var(--text); font-weight: 600; }
+
+.earn-cta { text-align: center; }
+
+@media (max-width: 768px) {
+  .earn-examples { grid-template-columns: 1fr; }
+  .earn-how { flex-direction: column; }
+  .earn-step-arrow { transform: rotate(90deg); }
+}
+
+/* ══════════════════════════════════════════
+   SECTION 6 — BUILT FOR GROWTH
+══════════════════════════════════════════ */
+.growth-section {
+  padding: 100px 0;
+}
+
+.growth-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 48px;
+}
+
+.growth-headline {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.growth-sub {
+  font-size: 17px;
+  color: var(--text-2);
+  line-height: 1.7;
+}
+
+.growth-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.growth-card { height: 100%; }
+
+.growth-card-icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  background: rgba(247,148,30,0.1);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+}
+.growth-card-icon svg {
+  width: 20px; height: 20px;
+  stroke: var(--orange);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.growth-card:nth-child(even) .growth-card-icon { background: rgba(52,211,153,0.1); }
+.growth-card:nth-child(even) .growth-card-icon svg { stroke: var(--green); }
+
+.growth-card-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.growth-card-desc {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.65;
+}
+
+@media (max-width: 900px) {
+  .growth-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 580px) {
+  .growth-grid { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════
+   SECTION 7 — MENTOR PLAN
+══════════════════════════════════════════ */
+.mentor-section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.mentor-section::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px; height: 500px;
+  background: radial-gradient(circle, rgba(247,148,30,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.mentor-inner {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 60px;
+  position: relative;
+  overflow: hidden;
+}
+.mentor-inner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--green), var(--orange));
+}
+
+.mentor-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.mentor-headline {
+  font-size: clamp(26px, 3.5vw, 38px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.mentor-sub {
+  font-size: 16px;
+  color: var(--text-2);
+  line-height: 1.7;
+}
+
+.mentor-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.mentor-feat {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 200ms var(--ease);
+}
+.mentor-feat:hover { border-color: var(--border-o); }
+
+.mentor-feat-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: rgba(247,148,30,0.1);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.mentor-feat-icon svg {
+  width: 18px; height: 18px;
+  stroke: var(--orange);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mentor-feat-name {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.mentor-feat-desc {
+  font-size: 12px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.mentor-cta { text-align: center; }
+
+@media (max-width: 768px) {
+  .mentor-inner { padding: 36px 24px; }
+  .mentor-features { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════
+   SECTION 8 — SOCIAL PROOF
+══════════════════════════════════════════ */
+.proof-section {
+  padding: 100px 0;
+}
+
+.proof-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 60px;
+}
+
+.proof-stat {
+  text-align: center;
+  padding: 24px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.proof-stat-num {
+  font-family: 'Geist Mono', monospace;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
+  color: var(--orange);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.proof-stat-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-3);
+}
+
+.proof-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.proof-headline {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.testimonials {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.testimonial {
+  padding: 32px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-quote {
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.75;
+  font-style: italic;
+  flex: 1;
+  margin-bottom: 24px;
+  position: relative;
+  padding-top: 24px;
+}
+.testimonial-quote::before {
+  content: '\201C';
+  position: absolute;
+  top: -4px; left: 0;
+  font-size: 48px;
+  color: var(--orange-dim);
+  font-style: normal;
+  line-height: 1;
+  font-family: Georgia, serif;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.testimonial-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(247,148,30,0.2), rgba(52,211,153,0.2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 700;
+  color: var(--orange);
+}
+
+.testimonial-name {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.testimonial-role {
+  display: inline-flex;
+  padding: 2px 8px;
+  background: rgba(247,148,30,0.1);
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 900px) {
+  .proof-stats { grid-template-columns: repeat(2, 1fr); }
+  .testimonials { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════
+   SECTION 9 — PRICING
+══════════════════════════════════════════ */
+.pricing-section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.pricing-section::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 800px; height: 400px;
+  background: radial-gradient(ellipse, rgba(247,148,30,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.pricing-header {
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto 48px;
+}
+
+.pricing-headline {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.pricing-sub {
+  font-size: 16px;
+  color: var(--text-2);
+  line-height: 1.7;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.pricing-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 220ms var(--ease), transform 200ms var(--ease);
+}
+.pricing-card:hover {
+  border-color: var(--border-o);
+  transform: translateY(-3px);
+}
+
+.pricing-card--popular {
+  border-color: var(--border-g);
+  background: rgba(52,211,153,0.04);
+}
+.pricing-card--popular:hover {
+  border-color: var(--green);
+}
+.pricing-card--popular::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+}
+
+.pricing-popular-tag {
+  position: absolute;
+  top: 16px; right: 16px;
+  padding: 4px 10px;
+  background: rgba(52,211,153,0.15);
+  border: 1px solid rgba(52,211,153,0.25);
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pricing-card--mentor {
+  border-color: var(--border-o);
+  background: rgba(247,148,30,0.03);
+}
+.pricing-card--mentor:hover {
+  border-color: var(--orange);
+}
+.pricing-card--mentor::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--orange), transparent);
+}
+
+.pricing-tier {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 8px;
+}
+.pricing-card--popular .pricing-tier { color: var(--green); }
+.pricing-card--mentor .pricing-tier { color: var(--orange); }
+
+.pricing-name {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.pricing-price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.pricing-amount {
+  font-family: 'Geist Mono', monospace;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1;
+}
+.pricing-card--popular .pricing-amount { color: var(--green); }
+.pricing-card--mentor .pricing-amount { color: var(--orange); }
+
+.pricing-period {
+  font-size: 14px;
+  color: var(--text-3);
+  font-weight: 500;
+}
+
+.pricing-desc {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.pricing-features {
+  list-style: none;
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pricing-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.pricing-check {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: rgba(52,211,153,0.12);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.pricing-check svg {
+  width: 10px; height: 10px;
+  stroke: var(--green);
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pricing-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  text-align: center;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 250ms var(--ease);
+}
+.pricing-btn--default {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.pricing-btn--default:hover {
+  border-color: var(--border-o);
+  background: rgba(247,148,30,0.05);
+}
+
+.pricing-btn--green {
+  background: var(--green);
+  color: #0C0A09;
+  box-shadow: 0 4px 20px rgba(52,211,153,0.2);
+}
+.pricing-btn--green:hover {
+  background: #5EEAD4;
+  transform: translateY(-1px);
+}
+
+.pricing-btn--orange {
+  background: var(--orange);
+  color: #0C0A09;
+  box-shadow: 0 4px 20px rgba(247,148,30,0.2);
+}
+.pricing-btn--orange:hover {
+  background: var(--orange-hi);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+}
+
+/* ══════════════════════════════════════════
+   SECTION 10 — CLOSING CTA
+══════════════════════════════════════════ */
+.closing-section {
+  padding: 120px 0 100px;
+  text-align: center;
+  position: relative;
+}
+
+.closing-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(247,148,30,0.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.closing-headline {
+  font-size: clamp(30px, 4.5vw, 52px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+
+.closing-sub {
+  font-size: 18px;
+  color: var(--text-2);
+  line-height: 1.7;
+  max-width: 560px;
+  margin: 0 auto 40px;
+}
+
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 60px 0 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+.footer-brand {
+  max-width: 280px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+.footer-logo svg { width: 28px; height: 28px; }
+
+.footer-desc {
+  font-size: 13px;
+  color: var(--text-3);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.footer-social {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-social a {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 200ms var(--ease), background 200ms var(--ease);
+}
+.footer-social a:hover {
+  border-color: var(--border-o);
+  background: rgba(247,148,30,0.06);
+}
+.footer-social a svg {
+  width: 16px; height: 16px;
+  stroke: var(--text-2);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.footer-col-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 16px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: var(--text-2);
+  transition: color 200ms var(--ease);
+}
+.footer-links a:hover { color: var(--text); }
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.footer-legal {
+  display: flex;
+  gap: 20px;
+}
+.footer-legal a {
+  color: var(--text-3);
+  transition: color 200ms var(--ease);
+}
+.footer-legal a:hover { color: var(--text-2); }
+
+@media (max-width: 768px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-brand { max-width: 100%; grid-column: 1 / -1; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+}
+
+/* ══════════════════════════════════════════
+   GLOBAL RESPONSIVE
+══════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .hero-ctas { flex-direction: column; align-items: stretch; }
+  .hero-ctas .btn-primary, .hero-ctas .text-link { text-align: center; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ NAVIGATION ══════════════ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <!-- VAI Logo Mark -->
+      <svg viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" rx="8" fill="#F7941E"/>
+        <path d="M8 10L16 24L24 10" stroke="#0C0A09" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      VAI
+    </a>
+
+    <ul class="nav-menu">
+      <li><a href="#growth">Athletes &amp; Families</a></li>
+      <li><a href="#growth">Coaches &amp; Trainers</a></li>
+      <li><a href="#mentor">Organizations</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#avanti">AVANTI</a></li>
+      <li><a href="#earn">Share &amp; Earn</a></li>
+    </ul>
+
+    <a href="#pricing" class="nav-cta nav-cta-desktop">Get Started</a>
+
+    <button class="nav-hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#growth" onclick="document.getElementById('mobileMenu').classList.remove('open')">Athletes &amp; Families</a>
+  <a href="#growth" onclick="document.getElementById('mobileMenu').classList.remove('open')">Coaches &amp; Trainers</a>
+  <a href="#mentor" onclick="document.getElementById('mobileMenu').classList.remove('open')">Organizations</a>
+  <a href="#pricing" onclick="document.getElementById('mobileMenu').classList.remove('open')">Pricing</a>
+  <a href="#avanti" onclick="document.getElementById('mobileMenu').classList.remove('open')">AVANTI</a>
+  <a href="#earn" onclick="document.getElementById('mobileMenu').classList.remove('open')">Share &amp; Earn</a>
+  <a href="#pricing" class="nav-cta" onclick="document.getElementById('mobileMenu').classList.remove('open')">Get Started</a>
+</div>
+
+<!-- ══════════════ SECTION 1: HERO ══════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Powered by AVANTI, VAI's intelligent guidance engine
+        </div>
+
+        <h1 class="hero-title">
+          <span class="highlight-orange">Train Smarter.</span><br>
+          Grow Stronger.<br>
+          <span class="highlight-green">Unlock Opportunity.</span>
+        </h1>
+
+        <p class="hero-sub">
+          One platform for performance, organization, and income — built for athletes, families, coaches, trainers, and communities. Whether you're chasing a personal record or building a business, VAI meets you where you are.
+        </p>
+
+        <div class="hero-pillars">
+          <!-- Pillar 1: Intelligent Guidance -->
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <div>
+              <div class="pillar-name">Intelligent Guidance</div>
+              <div class="pillar-desc">Personalized AI mentorship powered by AVANTI</div>
+            </div>
+          </div>
+          <!-- Pillar 2: Measurable Progress -->
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div>
+              <div class="pillar-name">Measurable Progress</div>
+              <div class="pillar-desc">Structured development with trackable results</div>
+            </div>
+          </div>
+          <!-- Pillar 3: Organized Growth -->
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div>
+              <div class="pillar-name">Organized Growth</div>
+              <div class="pillar-desc">Scheduling, coordination, messaging, and program management</div>
+            </div>
+          </div>
+          <!-- Pillar 4: Built-In Income (green) -->
+          <div class="pillar">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div>
+              <div class="pillar-name">Built-In Income</div>
+              <div class="pillar-desc">Turn participation into earnings through Share &amp; Earn</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-ctas">
+          <a href="#pricing" class="btn-primary">
+            Get Started Free
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#pricing" class="text-link">
+            See Plans
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Phone Mockup -->
+      <div class="hero-visual">
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-header">
+              <div class="phone-header-logo">VAI</div>
+              <div class="phone-header-sub">Your Athletic Ecosystem</div>
+            </div>
+
+            <div class="phone-avanti">
+              <div class="phone-avanti-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+              </div>
+              <div class="phone-avanti-text">
+                <strong>AVANTI:</strong> You have practice at 4 PM. Hydrate now and do a 10-min dynamic warm-up.
+              </div>
+            </div>
+
+            <div class="phone-card">
+              <div class="phone-card-label">Weekly Progress</div>
+              <div class="phone-card-value">87<span style="font-size:14px;color:var(--text-3)">/100</span></div>
+              <div class="phone-card-desc">Performance score up 12% this week</div>
+            </div>
+
+            <div class="phone-card">
+              <div class="phone-card-label">Share &amp; Earn</div>
+              <div class="phone-card-value phone-card-value--green">$142.50</div>
+              <div class="phone-card-desc">Earned this month from 6 referrals</div>
+            </div>
+
+            <div class="phone-bar">
+              <div class="phone-bar-item active">
+                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+              </div>
+              <div class="phone-bar-item">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </div>
+              <div class="phone-bar-item">
+                <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <div class="phone-bar-item">
+                <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SECTION 2: INTRODUCING VAI ══════════════ -->
+<section class="intro-section">
+  <div class="container">
+    <div class="intro-inner reveal">
+      <div class="section-label section-label--orange">Introducing VAI</div>
+      <h2 class="intro-headline">
+        Performance Fuels Progress.<br>
+        <span class="intro-accent">Community Creates Income.</span>
+      </h2>
+      <p class="intro-body">
+        VAI is an AI-powered ecosystem where <strong>performance fuels progress</strong> and <strong>community creates income</strong>. With intelligent guidance from AVANTI and a built-in Share &amp; Earn program, VAI helps people of all ages develop their skills, improve their health, and build real income — all from one platform.
+      </p>
+      <p class="intro-body">
+        Whether you're a 12-year-old soccer player, a personal trainer scaling your business, a yoga studio looking for better tools, or a parent managing three kids' schedules — <strong>VAI was built for you.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SECTION 3: THE COST OF PLAYING ══════════════ -->
+<section class="cost-section" id="cost">
+  <div class="container">
+    <div class="section-label reveal">The Cost of Playing</div>
+
+    <h2 class="cost-headline reveal reveal-delay-1">
+      <span class="stat-highlight">$40 Billion.</span> That's What American Families Spend on Youth Sports Every Year.
+    </h2>
+
+    <p class="cost-sub reveal reveal-delay-2">And it's breaking families apart from the things that matter most.</p>
+
+    <p class="cost-body reveal reveal-delay-3">
+      Kids are being forced to quit the sports they love because their families can't keep up with the cost. By 2030, youth sports will split into two worlds — <strong>premium experiences for the wealthy</strong> and <strong>bare-bones programs for everyone else</strong>. The middle is disappearing. And the kids caught in between are losing more than a game — they're losing mentorship, structure, community, and opportunity.
+    </p>
+
+    <div class="cost-reversal reveal reveal-delay-3">
+      <p>
+        <strong>VAI Basic is free.</strong> Not discounted. Not "freemium with an asterisk." <strong>Free.</strong> Zero cost in a $1,016-per-year world. And through Share &amp; Earn, kids and families don't just save money — <span class="reversal-accent">they make money</span>. VAI doesn't reduce the cost barrier. <span class="reversal-accent">It reverses it.</span>
+      </p>
+    </div>
+
+    <div class="stats-bar reveal reveal-delay-4">
+      <div class="stat-card">
+        <div class="stat-number mono">$1,016</div>
+        <div class="stat-label">Average cost per child, per year</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number mono">70%</div>
+        <div class="stat-label">Drop out by age 13</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number mono">6X</div>
+        <div class="stat-label">Inequity gap for low-income families</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SECTION 4: MEET AVANTI ══════════════ -->
+<section class="avanti-section" id="avanti">
+  <div class="container">
+    <div class="avanti-header reveal">
+      <div class="section-label section-label--orange">Meet AVANTI</div>
+      <h2 class="avanti-headline">Intelligence That<br>Moves With You.</h2>
+      <p class="avanti-sub">
+        AVANTI is your personal AI-powered mentor — proactive, adaptive, and built for real performance.
+      </p>
+      <div class="avanti-equalizer">
+        Wealthy families pay thousands for private coaching and elite training programs. <strong>AVANTI gives every kid — and every adult — that same level of personalized guidance.</strong> For the cost of a streaming subscription.
+      </div>
+    </div>
+
+    <div class="avanti-features reveal">
+      <div class="glass-card glass-card--accent">
+        <div class="avanti-icon">
+          <!-- Clock/Calendar icon -->
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="avanti-feature-title">Proactive Preparation</div>
+        <div class="avanti-feature-desc">Knows your schedule, delivers personalized insights and recommendations before practices, games, and training sessions.</div>
+      </div>
+      <div class="glass-card glass-card--accent">
+        <div class="avanti-icon">
+          <!-- Brain/Adapt icon -->
+          <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><line x1="9" y1="21" x2="15" y2="21"/><line x1="10" y1="17" x2="10" y2="21"/><line x1="14" y1="17" x2="14" y2="21"/></svg>
+        </div>
+        <div class="avanti-feature-title">Adaptive Coaching</div>
+        <div class="avanti-feature-desc">Adjusts guidance based on your age, activity, goals, and progress. Gets smarter the more you use it.</div>
+      </div>
+      <div class="glass-card glass-card--accent">
+        <div class="avanti-icon">
+          <!-- Chart/Progress icon -->
+          <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <div class="avanti-feature-title">Progress You Can See</div>
+        <div class="avanti-feature-desc">Tracks your development over time, celebrates wins, identifies growth areas, and adjusts your plan automatically.</div>
+      </div>
+    </div>
+
+    <div class="avanti-cta reveal">
+      <a href="#pricing" class="btn-primary">
+        Learn How to Get AVANTI
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SECTION 5: SHARE & EARN ══════════════ -->
+<section class="earn-section" id="earn">
+  <div class="container">
+    <div class="earn-header reveal">
+      <div class="section-label section-label--green">Share &amp; Earn</div>
+      <h2 class="earn-headline">Share VAI. <span class="highlight-green">Get Paid.</span><br>It's That Simple.</h2>
+      <p class="earn-body">
+        Every other platform takes your money and gives you nothing back. VAI flipped the model.
+      </p>
+    </div>
+
+    <div class="earn-how reveal">
+      <div class="earn-step">
+        <span class="earn-step-num">1</span>
+        Share your link
+      </div>
+      <span class="earn-step-arrow">&rarr;</span>
+      <div class="earn-step">
+        <span class="earn-step-num">2</span>
+        They get 50% off for life
+      </div>
+      <span class="earn-step-arrow">&rarr;</span>
+      <div class="earn-step">
+        <span class="earn-step-num">3</span>
+        You earn 25% recurring
+      </div>
+    </div>
+
+    <div class="earn-examples reveal">
+      <div class="glass-card glass-card--green earn-example">
+        <div class="earn-example-role">Parent</div>
+        <p class="earn-example-text">
+          A parent shares VAI with <strong>5 soccer families</strong> in their league. The referral earnings <strong>cover their own registration fees automatically</strong> — and then some.
+        </p>
+      </div>
+      <div class="glass-card glass-card--green earn-example">
+        <div class="earn-example-role">Trainer</div>
+        <p class="earn-example-text">
+          A personal trainer shares VAI with their <strong>existing client base</strong>. They now earn <strong>recurring revenue on top of coaching income</strong> — without doing extra work.
+        </p>
+      </div>
+      <div class="glass-card glass-card--green earn-example">
+        <div class="earn-example-role">Athlete</div>
+        <p class="earn-example-text">
+          A 15-year-old athlete shares with their <strong>team and school friends</strong>. That's <strong>gear money, camp money, travel money</strong> — earned by a kid, not spent by a parent.
+        </p>
+      </div>
+    </div>
+
+    <div class="earn-cta reveal">
+      <a href="https://www.vai.app/share" class="btn-primary btn-green">
+        Learn More About Share &amp; Earn
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SECTION 6: BUILT FOR GROWTH ══════════════ -->
+<section class="growth-section" id="growth">
+  <div class="container">
+    <div class="growth-header reveal">
+      <div class="section-label">Who It's For</div>
+      <h2 class="growth-headline">Built for Growth<br>at Every Level</h2>
+      <p class="growth-sub">From individual athletes to organizations — VAI scales with you.</p>
+    </div>
+
+    <div class="growth-grid">
+      <!-- Individuals -->
+      <div class="glass-card glass-card--accent growth-card reveal reveal-delay-1">
+        <div class="growth-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div class="growth-card-title">Individuals</div>
+        <div class="growth-card-desc">Develop skills. Build confidence. Train with intelligent guidance from AVANTI. Track your progress and see measurable improvement over time.</div>
+      </div>
+
+      <!-- Families -->
+      <div class="glass-card glass-card--accent growth-card reveal reveal-delay-2">
+        <div class="growth-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div class="growth-card-title">Families</div>
+        <div class="growth-card-desc">Support participation across the household. Manage schedules. Use Share &amp; Earn to turn the financial equation upside down.</div>
+      </div>
+
+      <!-- Coaches -->
+      <div class="glass-card glass-card--accent growth-card reveal reveal-delay-3">
+        <div class="growth-card-icon">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="growth-card-title">Coaches &amp; Team Leaders</div>
+        <div class="growth-card-desc">Increase engagement without increasing your workload. Let AVANTI handle individual guidance while you focus on team strategy and development.</div>
+      </div>
+
+      <!-- Trainers -->
+      <div class="glass-card glass-card--accent growth-card reveal reveal-delay-1">
+        <div class="growth-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+        </div>
+        <div class="growth-card-title">Trainers &amp; Fitness Pros</div>
+        <div class="growth-card-desc">Deliver AI-enhanced guidance your competitors can't match. Scale your impact. Earn recurring income through client referrals.</div>
+      </div>
+
+      <!-- Small Business -->
+      <div class="glass-card glass-card--accent growth-card reveal reveal-delay-2">
+        <div class="growth-card-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        </div>
+        <div class="growth-card-title">Small Business Owners</div>
+        <div class="growth-card-desc">Manage payments and scheduling. Launch a branded website. Use built-in tools to run your operation without cobbling together 5 different apps.</div>
+      </div>
+
+      <!-- Mentors -->
+      <div class="glass-card glass-card--accent growth-card reveal reveal-delay-3">
+        <div class="growth-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <div class="growth-card-title">Mentors &amp; Experts</div>
+        <div class="growth-card-desc">Monetize your knowledge. Expand your reach. Build a client base with AI-powered tools that make your expertise more accessible than ever.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SECTION 7: MENTOR PLAN ══════════════ -->
+<section class="mentor-section" id="mentor">
+  <div class="container">
+    <div class="mentor-inner reveal">
+      <div class="mentor-header">
+        <div class="section-label section-label--orange">VAI Mentor Plan</div>
+        <h2 class="mentor-headline">Run Your Operation With<br>Smart Intelligence</h2>
+        <p class="mentor-sub">Everything you need to manage, grow, and scale your business — powered by AI.</p>
+      </div>
+
+      <div class="mentor-features">
+        <div class="mentor-feat">
+          <div class="mentor-feat-icon">
+            <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <div>
+            <div class="mentor-feat-name">Payment Management</div>
+            <div class="mentor-feat-desc">Accept payments and manage transactions seamlessly</div>
+          </div>
+        </div>
+
+        <div class="mentor-feat">
+          <div class="mentor-feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <div class="mentor-feat-name">Subscription Billing</div>
+            <div class="mentor-feat-desc">Recurring revenue with automated billing cycles</div>
+          </div>
+        </div>
+
+        <div class="mentor-feat">
+          <div class="mentor-feat-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div>
+            <div class="mentor-feat-name">Calendar &amp; Scheduling</div>
+            <div class="mentor-feat-desc">Book sessions, manage availability, reduce no-shows</div>
+          </div>
+        </div>
+
+        <div class="mentor-feat">
+          <div class="mentor-feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+          </div>
+          <div>
+            <div class="mentor-feat-name">Revenue Dashboards</div>
+            <div class="mentor-feat-desc">Real-time earnings, client metrics, and growth analytics</div>
+          </div>
+        </div>
+
+        <div class="mentor-feat">
+          <div class="mentor-feat-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <div>
+            <div class="mentor-feat-name">Custom Branded Website</div>
+            <div class="mentor-feat-desc">Your own professional presence, built-in and ready</div>
+          </div>
+        </div>
+
+        <div class="mentor-feat">
+          <div class="mentor-feat-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div>
+            <div class="mentor-feat-name">AI-Enhanced Engagement</div>
+            <div class="mentor-feat-desc">AVANTI keeps your clients engaged between sessions</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mentor-cta">
+        <a href="#pricing" class="btn-primary">
+          Get Mentor Plan Now
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SECTION 8: SOCIAL PROOF ══════════════ -->
+<section class="proof-section" id="proof">
+  <div class="container">
+    <div class="proof-stats reveal">
+      <div class="proof-stat">
+        <div class="proof-stat-num mono">10K+</div>
+        <div class="proof-stat-label">Active Users</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-stat-num mono">40+</div>
+        <div class="proof-stat-label">Sports Supported</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-stat-num mono">250K+</div>
+        <div class="proof-stat-label">Sessions Completed</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-stat-num mono">$85K+</div>
+        <div class="proof-stat-label">Earned by Users</div>
+      </div>
+    </div>
+
+    <div class="proof-header reveal">
+      <div class="section-label">Testimonials</div>
+      <h2 class="proof-headline">Real People. Real Results.</h2>
+    </div>
+
+    <div class="testimonials reveal">
+      <div class="glass-card glass-card--accent testimonial">
+        <div class="testimonial-quote">
+          AVANTI knew I had film review on Tuesday and a game Friday. It prepped me with specific reads to watch for and recovery tips for the week. My coach noticed the difference before I did.
+        </div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">J</div>
+          <div>
+            <div class="testimonial-name">Jaxon D.</div>
+            <div class="testimonial-role">College Quarterback</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card glass-card--accent testimonial">
+        <div class="testimonial-quote">
+          I shared VAI with six families in my son's soccer league. Within two months, the Share &amp; Earn commissions covered both my kids' registration fees. I went from spending to earning.
+        </div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">S</div>
+          <div>
+            <div class="testimonial-name">Sarah M.</div>
+            <div class="testimonial-role">Sports Parent</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card glass-card--accent testimonial">
+        <div class="testimonial-quote">
+          The Mentor Plan replaced my scheduling app, my payment processor, and my client portal. One platform, one bill, and my clients get AI coaching between sessions. It's a no-brainer.
+        </div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">M</div>
+          <div>
+            <div class="testimonial-name">Marcus T.</div>
+            <div class="testimonial-role">Personal Trainer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SECTION 9: PRICING ══════════════ -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="pricing-header reveal">
+      <div class="section-label">Pricing</div>
+      <h2 class="pricing-headline">Choose Your Plan</h2>
+      <p class="pricing-sub">Start free. Upgrade when you're ready. Every plan includes Share &amp; Earn.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- FREE -->
+      <div class="pricing-card reveal reveal-delay-1">
+        <div class="pricing-tier">Free</div>
+        <div class="pricing-name">VAI Basic</div>
+        <div class="pricing-price">
+          <span class="pricing-amount mono">$0</span>
+          <span class="pricing-period">/mo</span>
+        </div>
+        <p class="pricing-desc">Everything you need to get started. Community, connection, and core tools — completely free.</p>
+        <ul class="pricing-features">
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Community access &amp; profiles
+          </li>
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Messaging &amp; connections
+          </li>
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Event discovery
+          </li>
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Basic scheduling
+          </li>
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Share &amp; Earn eligible
+          </li>
+        </ul>
+        <a href="#" class="pricing-btn pricing-btn--default">Get Started Free</a>
+      </div>
+
+      <!-- VAI+ (POPULAR) -->
+      <div class="pricing-card pricing-card--popular reveal reveal-delay-2">
+        <div class="pricing-popular-tag">Most Popular</div>
+        <div class="pricing-tier">Plus</div>
+        <div class="pricing-name">VAI+</div>
+        <div class="pricing-price">
+          <span class="pricing-amount mono">$9.95</span>
+          <span class="pricing-period">/mo</span>
+        </div>
+        <p class="pricing-desc">Unlock AVANTI AI coaching, enhanced tools, and everything you need to perform at your best.</p>
+        <ul class="pricing-features">
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Everything in Free
+          </li>
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <strong style="color:var(--green)">AVANTI AI Coach</strong>
+          </li>
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Enhanced athlete profile
+          </li>
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Advanced calendar &amp; scheduling
+          </li>
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Abilities tracking &amp; progress
+          </li>
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Full Share &amp; Earn commissions
+          </li>
+        </ul>
+        <a href="#" class="pricing-btn pricing-btn--green">Get VAI+</a>
+      </div>
+
+      <!-- MENTOR -->
+      <div class="pricing-card pricing-card--mentor reveal reveal-delay-3">
+        <div class="pricing-tier">Mentor</div>
+        <div class="pricing-name">VAI Mentor</div>
+        <div class="pricing-price">
+          <span class="pricing-amount mono">$99.95</span>
+          <span class="pricing-period">/mo</span>
+        </div>
+        <p class="pricing-desc">The complete business toolkit. Payments, billing, scheduling, dashboards, and a branded website.</p>
+        <ul class="pricing-features">
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Everything in VAI+
+          </li>
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Payment management
+          </li>
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Subscription billing
+          </li>
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Revenue dashboards
+          </li>
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Custom branded website
+          </li>
+          <li>
+            <span class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            AI-enhanced client engagement
+          </li>
+        </ul>
+        <a href="#" class="pricing-btn pricing-btn--orange">Get Mentor Plan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SECTION 10: CLOSING CTA ══════════════ -->
+<section class="closing-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label section-label--orange" style="text-align:center">Get Started</div>
+      <h2 class="closing-headline">
+        <span style="color:var(--orange)">Train Smarter.</span> Grow Stronger.<br>
+        <span style="color:var(--green)">Unlock Opportunity.</span>
+      </h2>
+      <p class="closing-sub">
+        The tools are here. The AI is ready. The community is growing. And it starts for free.
+      </p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="#pricing" class="btn-primary">
+          Pick a Plan
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#pricing" class="btn-secondary">
+          Start Free
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="8" fill="#F7941E"/>
+            <path d="M8 10L16 24L24 10" stroke="#0C0A09" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          VAI
+        </div>
+        <p class="footer-desc">
+          AI-powered ecosystem for athletes, families, coaches, trainers, and communities. Train smarter. Grow stronger. Unlock opportunity.
+        </p>
+        <div class="footer-social">
+          <!-- Instagram -->
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <!-- X/Twitter -->
+          <a href="#" aria-label="X">
+            <svg viewBox="0 0 24 24"><path d="M4 4l11.733 16H20L8.267 4H4z"/><path d="M4 20l6.768-6.768"/><path d="M20 4l-6.768 6.768"/></svg>
+          </a>
+          <!-- TikTok -->
+          <a href="#" aria-label="TikTok">
+            <svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a href="#" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Product</div>
+        <ul class="footer-links">
+          <li><a href="#avanti">AVANTI AI</a></li>
+          <li><a href="#earn">Share &amp; Earn</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#mentor">Mentor Plan</a></li>
+          <li><a href="#">Download App</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Community</div>
+        <ul class="footer-links">
+          <li><a href="#">Athletes</a></li>
+          <li><a href="#">Coaches</a></li>
+          <li><a href="#">Trainers</a></li>
+          <li><a href="#">Organizations</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Support</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 VAI. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════ SCRIPTS ══════════════ -->
+<script>
+// ── Intersection Observer for scroll-triggered reveals ──
+document.addEventListener('DOMContentLoaded', () => {
+  const reveals = document.querySelectorAll('.reveal');
+  // First hide them, then observe for scroll-triggered reveal
+  reveals.forEach(el => el.classList.add('hidden-for-reveal'));
+
+  // Small delay to ensure the hidden class is applied before observing
+  requestAnimationFrame(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('hidden-for-reveal');
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.08,
+      rootMargin: '0px 0px -20px 0px'
+    });
+
+    reveals.forEach(el => observer.observe(el));
+  });
+
+  // ── Nav background on scroll ──
+  const nav = document.getElementById('nav');
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    if (scrollY > 60) {
+      nav.style.background = 'rgba(12,10,9,0.95)';
+      nav.style.borderBottomColor = 'rgba(255,255,255,0.1)';
+    } else {
+      nav.style.background = 'rgba(12,10,9,0.8)';
+      nav.style.borderBottomColor = 'rgba(255,255,255,0.07)';
+    }
+    lastScroll = scrollY;
+  }, { passive: true });
+
+  // ── Smooth scroll for anchor links ──
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === '#') return;
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        const offset = 80; // nav height
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ── Animated counter for stats ──
+  const statNums = document.querySelectorAll('.stat-number, .proof-stat-num');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateValue(entry.target);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  statNums.forEach(el => counterObserver.observe(el));
+
+  function animateValue(el) {
+    const text = el.textContent.trim();
+    const hasPrefix = text.match(/^(\$|)/);
+    const hasSuffix = text.match(/(%|X|\+|K\+)$/);
+    const prefix = hasPrefix ? hasPrefix[0] : '';
+    const suffix = hasSuffix ? hasSuffix[0] : '';
+
+    let numStr = text.replace(/[^0-9.,]/g, '');
+    if (!numStr) return;
+
+    const target = parseFloat(numStr.replace(/,/g, ''));
+    if (isNaN(target)) return;
+
+    const hasComma = numStr.includes(',');
+    const duration = 1800;
+    const start = performance.now();
+
+    function step(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      let current = Math.round(eased * target);
+
+      let display = hasComma ? current.toLocaleString() : current.toString();
+      el.textContent = prefix + display + suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
+});
+</script>
+</body>
+</html>
